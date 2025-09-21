@@ -2,9 +2,11 @@ package com.ecommerce.springCart.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.bridge.IMessage;
 
 @Entity(name = "categories")
 @Data
@@ -17,6 +19,7 @@ public class Category {
     private Long categoryId;
 
     @NotBlank
+    @Size(min = 5, message = "Category name must contain atleast 5 characters")
     private String categoryName;
 
 //    public Category(Long categoryId, String categoryName) {
