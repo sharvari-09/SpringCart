@@ -1,5 +1,6 @@
 package com.ecommerce.springCart.service;
 
+import com.ecommerce.springCart.exceptions.APIException;
 import com.ecommerce.springCart.exceptions.ResourceNotFoundException;
 import com.ecommerce.springCart.model.Category;
 import com.ecommerce.springCart.repositories.CategoryRepository;
@@ -22,12 +23,19 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<Category> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        if(categories.isEmpty())
+            throw new APIException("No Category created till now.");
         return categoryRepository.findAll();
     }
 
     @Override
     public void createCategory(Category category) {
 //        category.setCategoryId(nextId++);
+        Category savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
+        if(savedCategory != null){
+            throw new APIException("Category with the name " + category.getCategoryName() + " already exists" );
+        }
         categoryRepository.save(category);
     }
 
