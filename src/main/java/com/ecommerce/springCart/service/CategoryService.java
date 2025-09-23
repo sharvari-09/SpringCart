@@ -1,14 +1,16 @@
 package com.ecommerce.springCart.service;
 
 import com.ecommerce.springCart.model.Category;
-import java.util.List;
+import com.ecommerce.springCart.payload.CategoryDTO;
+import com.ecommerce.springCart.payload.CategoryResponse;
+
 
 public interface CategoryService {
-    List<Category> getAllCategories();
-    void createCategory(Category category);
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
 
-    String deleteCategory(Long categoryId);
+    CategoryDTO deleteCategory(Long categoryId);
 
-    Category updateCategory(Category category, Long categoryId);
+    CategoryDTO updateCategory(CategoryDTO CategoryDTO, Long categoryId);
 }
