@@ -1,6 +1,5 @@
 package com.ecommerce.springCart.controller;
 
-import com.ecommerce.springCart.model.Product;
 import com.ecommerce.springCart.payload.ProductDTO;
 import com.ecommerce.springCart.payload.ProductResponse;
 import com.ecommerce.springCart.service.ProductService;
@@ -15,22 +14,22 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-    @PostMapping("/admin/categories/{categoryId}/product")
-    public ResponseEntity<ProductDTO> getProduct(@RequestBody Product product,
-                                                 @PathVariable Long categoryId) {
 
-        ProductDTO productDTO = productService.addProduct(categoryId, product);
-        return new ResponseEntity<>(productDTO,HttpStatus.CREATED);
+    @PostMapping("/admin/categories/{categoryId}/product")
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO,
+                                                 @PathVariable Long categoryId){
+        ProductDTO savedProductDTO = productService.addProduct(categoryId, productDTO);
+        return new ResponseEntity<>(savedProductDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/public/products")
     public ResponseEntity<ProductResponse> getAllProducts(){
-        ProductResponse productResponse =  productService.getAllProducts();
+        ProductResponse productResponse = productService.getAllProducts();
         return new ResponseEntity<>(productResponse,HttpStatus.OK);
     }
 
     @GetMapping("/public/categories/{categoryId}/products")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long categoryId){
+    public ResponseEntity<ProductResponse> getProductsByCategory(@PathVariable Long categoryId){
         ProductResponse productResponse = productService.searchByCategory(categoryId);
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
@@ -39,22 +38,18 @@ public class ProductController {
     public ResponseEntity<ProductResponse> getProductsByKeyword(@PathVariable String keyword){
         ProductResponse productResponse = productService.searchProductByKeyword(keyword);
         return new ResponseEntity<>(productResponse, HttpStatus.FOUND);
-
     }
 
     @PutMapping("/admin/products/{productId}")
-    public ResponseEntity<ProductDTO> updateProduct(@RequestBody Product product,
+    public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO,
                                                     @PathVariable Long productId){
-        ProductDTO updateProductDTO = productService.updateProduct(productId, product);
-        return new ResponseEntity<>(updateProductDTO, HttpStatus.OK);
-
+        ProductDTO updatedProductDTO = productService.updateProduct(productId, productDTO);
+        return new ResponseEntity<>(updatedProductDTO, HttpStatus.OK);
     }
+
     @DeleteMapping("/admin/products/{productId}")
     public ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long productId){
         ProductDTO deletedProduct = productService.deleteProduct(productId);
         return new ResponseEntity<>(deletedProduct, HttpStatus.OK);
     }
-
-
-
 }
