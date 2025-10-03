@@ -1,19 +1,19 @@
-    package com.ecommerce.springCart.payload;
+package com.ecommerce.springCart.payload;
 
-    import lombok.AllArgsConstructor;
-    import lombok.Data;
-    import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    import java.util.List;
+import java.util.List;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class ProductResponse {
-        private List<ProductDTO> content;
-        private Integer pageNumber;
-        private Integer pageSize;
-        private Long totalElements;
-        private Integer totalPages;
-        private boolean lastPage;
-    }
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductResponse {
+    private List<ProductDTO> content;
+    private Integer pageNumber;
+    private Integer pageSize;
+    private Long totalElements;
+    private Integer totalPages;
+    private boolean lastPage;
+}

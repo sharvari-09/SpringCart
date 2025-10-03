@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aspectj.bridge.IMessage;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
@@ -25,30 +23,5 @@ public class Category {
     private String categoryName;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Product>products;
-
-//    public Category(Long categoryId, String categoryName) {
-//        this.categoryId = categoryId;
-//        this.categoryName = categoryName;
-//    }
-//
-//    public Category() {
-//
-//    }
-//
-//    public Long getCategoryId() {
-//        return categoryId;
-//    }
-//
-//    public void setCategoryId(Long categoryId) {
-//        this.categoryId = categoryId;
-//    }
-//
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
-//
-//    public void setCategoryName(String categoryName) {
-//        this.categoryName = categoryName;
-//    }
+    private List<Product> products;
 }

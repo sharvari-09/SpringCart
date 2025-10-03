@@ -1,7 +1,6 @@
 package com.ecommerce.springCart.exceptions;
 
 
-import com.ecommerce.springCart.exceptions.ResourceNotFoundException;
 import com.ecommerce.springCart.payload.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

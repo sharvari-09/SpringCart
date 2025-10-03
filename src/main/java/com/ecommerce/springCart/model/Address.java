@@ -16,9 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Address {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
@@ -44,19 +42,19 @@ public class Address {
     private String country;
 
     @NotBlank
-    @Size(min = 6, message = "Building name must be atleast 6 characters")
+    @Size(min = 6, message = "Pincode must be atleast 6 characters")
     private String pincode;
 
     @ToString.Exclude
     @ManyToMany(mappedBy = "addresses")
     private List<User> users = new ArrayList<>();
 
-    public Address(String pincode, String country, String state, String city, String buildingName, String street) {
-        this.pincode = pincode;
-        this.country = country;
-        this.state = state;
-        this.city = city;
-        this.buildingName = buildingName;
+    public Address(String street, String buildingName, String city, String state, String country, String pincode) {
         this.street = street;
+        this.buildingName = buildingName;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.pincode = pincode;
     }
 }
